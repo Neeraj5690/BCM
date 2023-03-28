@@ -8,8 +8,8 @@ import openpyxl
 import pandas as pd
 import ast
 import sys
-if "C:/Users/Neeraj/PycharmProjects/MIMO" not in sys.path:
-    sys.path.append("C:/Users/Neeraj/PycharmProjects/MIMO")
+if "C:/Users/Neeraj/PycharmProjects/BCM" not in sys.path:
+    sys.path.append("C:/Users/Neeraj/PycharmProjects/BCM")
 from TestEnvironment.GlobalClassMethods.MasterDataExcelReader import DataReadMaster
 
 def test_ReportSendSmokeAll():
@@ -21,7 +21,10 @@ def test_ReportSendSmokeAll():
     TestStatus = []
     SendStatus = []
     AttachmentAdded= []
-    PDFpath = DataReadMaster.Path + DataReadMaster.GlobalData("test_Smoke_Home_Admin", "ParentDirectory") + DataReadMaster.GlobalData("test_Smoke_Home_Admin", "Directory")+ DataReadMaster.GlobalData("test_Smoke_Home_Admin", "SubDirectory")
+    GlobalSheetTabName="test_Smoke_Home_Manager"
+    EmailIntro='EmailIntro_Smoke_Manager'
+    EmailSubject="EmailSubject_Smoke_Manager"
+    PDFpath = DataReadMaster.Path + DataReadMaster.GlobalData(GlobalSheetTabName, "ParentDirectory") + DataReadMaster.GlobalData(GlobalSheetTabName, "Directory")+ DataReadMaster.GlobalData(GlobalSheetTabName, "SubDirectory")
     #-------------------To read content to send in e-Mail--------------------
     ExcelFileName = "FileName"
     loc = (PDFpath+'PDFFileNameData/' + ExcelFileName + '.xlsx')
@@ -49,7 +52,7 @@ def test_ReportSendSmokeAll():
     html = '''
         <html>
             <body>
-                <p>Hi Team <br />'''+DataReadMaster.GlobalData('GlobalData', 'EmailIntro_Smoke_Admin')+'''<br />Below 
+                <p>Hi Team <br />'''+DataReadMaster.GlobalData('GlobalData', EmailIntro)+'''<br />Below 
                 test scenarios are covered</p> <p></p> <p>'''+B+'''</p 
                 <p></p>
                 <img src='cid:myimageid' width="500" align="center">
@@ -77,7 +80,7 @@ def test_ReportSendSmokeAll():
     SenderEmail=DataReadMaster.GlobalData("GlobalData", "EmailFrom")
     date_str = pd.Timestamp.today().strftime('%m-%d-%Y')
     msg = MIMEMultipart()
-    msg['Subject']=DataReadMaster.GlobalData("GlobalData", "EmailSubject_Smoke_Admin")+' -Test Automation Report- '+date_str
+    msg['Subject']=DataReadMaster.GlobalData("GlobalData", EmailSubject)+' -Test Automation Report- '+date_str
     msg['From'] = email_from
     msg['To'] = ','.join(email_to)
     msg.attach(MIMEText(html, "html"))

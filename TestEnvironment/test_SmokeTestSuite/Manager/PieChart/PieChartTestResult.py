@@ -3,14 +3,15 @@ import openpyxl
 import pytest
 from matplotlib import pyplot as plt
 import sys
-if "C:/Users/Neeraj/PycharmProjects/MIMO" not in sys.path:
-    sys.path.append("C:/Users/Neeraj/PycharmProjects/MIMO")
+if "C:/Users/Neeraj/PycharmProjects/BCM" not in sys.path:
+    sys.path.append("C:/Users/Neeraj/PycharmProjects/BCM")
 from TestEnvironment.GlobalClassMethods.MasterDataExcelReader import DataReadMaster
 
 @pytest.mark.smoke
 def test_PieChartTestResult():
     TestStatus = []
-    path = DataReadMaster.Path + DataReadMaster.GlobalData("test_Smoke_Home_Admin", "ParentDirectory") + DataReadMaster.GlobalData("test_Smoke_Home_Admin", "Directory")+ DataReadMaster.GlobalData("test_Smoke_Home_Admin", "SubDirectory")
+    GlobalSheetTabName = "test_Smoke_Home_Manager"
+    path = DataReadMaster.Path + DataReadMaster.GlobalData(GlobalSheetTabName, "ParentDirectory") + DataReadMaster.GlobalData(GlobalSheetTabName, "Directory")+ DataReadMaster.GlobalData(GlobalSheetTabName, "SubDirectory")
 
     #-------------------To read content to send in e-Mail--------------------
     ExcelFileName = "FileName"
