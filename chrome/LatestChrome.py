@@ -3,8 +3,8 @@ import wget
 import zipfile
 import os
 import sys
-if "C:/Users/Neeraj/PycharmProjects/MIMO" not in sys.path:
-    sys.path.append("C:/Users/Neeraj/PycharmProjects/MIMO")
+if "C:/Users/Neeraj/PycharmProjects/BCM" not in sys.path:
+    sys.path.append("C:/Users/Neeraj/PycharmProjects/BCM")
 from TestEnvironment.GlobalClassMethods.MasterDataExcelReader import DataReadMaster
 
 class ChromeCls:
