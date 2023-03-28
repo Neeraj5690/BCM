@@ -11,10 +11,9 @@ class ElementActionCls:
             driver.find_element(By.XPATH,
                                 DataReadMaster.GlobalData(MdataSheetTab,MdataSheetItem)).click()
             LoaderCls.LoaderMeth(driver)
-            MdataSheetItem=MdataSheetItem2
             ElementFound = driver.find_element(By.XPATH,
                                                DataReadMaster.GlobalData(MdataSheetTab,
-                                                                         MdataSheetItem)).text
+                                                                         MdataSheetItem2)).text
             # print("ElementExpected is "+ElementExpected)
             # print("ElementFound is "+ElementFound)
             assert ElementExpected in ElementFound, ElementVerify + " at " + PageName + " not found"
