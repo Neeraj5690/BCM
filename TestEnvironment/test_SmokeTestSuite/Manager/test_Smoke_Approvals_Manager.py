@@ -148,28 +148,7 @@ def test_setup():
                                                                                       "PDFDescription")
                         sheet.cell(row=i, column=5).value = FailStatus
                         checkcount = 1
-        # ----------------------------------------------------------------------------
-
-        # # ---------------------To add Test name in Execution sheet--------------------
-        # ExcelFileName1 = "Execution"
-        # loc1 = (path + 'Executiondir/' + ExcelFileName1 + '.xlsx')
-        # wb1 = openpyxl.load_workbook(loc1)
-        # sheet1 = wb1.active
-        # checkcount1 = 0
-
-        # for ii1 in range(1, 100):
-        #     if sheet1.cell(ii1, 1).value == None:
-        #         if checkcount1 == 0:
-        #             sheet1.cell(row=ii1, column=1).value = check
-        #             checkcount1 = 1
-        #         wb1.save(loc1)
-        #         break
-        #     else:
-        #         if sheet1.cell(ii1, 1).value == check:
-        #             if checkcount1 == 0:
-        #                 sheet1.cell(row=ii1, column=1).value = check
-        #                 checkcount1 = 1
-        # # -----------------------------------------------------------------------------
+        # -----------------------------------------------------------------------------
         driver.quit()
 
 
