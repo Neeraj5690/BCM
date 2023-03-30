@@ -16,7 +16,8 @@ from TestEnvironment.GlobalElementAction.SafeToElementAction import SafeToElemen
 from TestEnvironment.GlobalElementPresent.ElementPresent import ElementPresentCls
 from TestEnvironment.GlobalLoader.Loader import LoaderCls
 
-
+MdataSheetTab = "test_Smoke_Home_Manager"
+PageName = "Home"
 @allure.step("Entering username ")
 def enter_username(username):
     driver.find_element(By.ID, "un").send_keys(username)
@@ -40,9 +41,9 @@ def test_setup():
     FailStatus = "Pass"
     Exe = "Yes"
 
-    path = DataReadMaster.Path + DataReadMaster.GlobalData("test_Smoke_Home_Manager",
+    path = DataReadMaster.Path + DataReadMaster.GlobalData(MdataSheetTab,
                                                            "ParentDirectory") + DataReadMaster.GlobalData(
-        "test_Smoke_Home_Manager", "Directory") + DataReadMaster.GlobalData("test_Smoke_Home_Manager", "SubDirectory")
+        MdataSheetTab, "Directory") + DataReadMaster.GlobalData(MdataSheetTab, "SubDirectory")
     FundNameList = []
     FundNameListAfterRemove = []
 
@@ -56,7 +57,7 @@ def test_setup():
     DollarDate = "$" + DollarDate.date().__str__() + "$"
     d1 = datetime.datetime.strptime(D1, "%Y-%m-%d")
 
-    Exe = DataReadMaster.GlobalData("test_Smoke_Home_Manager", "Execution")
+    Exe = DataReadMaster.GlobalData(MdataSheetTab, "Execution")
 
     # --------Login to the application-----------------------
     if Exe == "Yes":
@@ -93,9 +94,9 @@ def test_setup():
         pdf.alias_nb_pages()
         pdf.add_page()
         pdf.set_font('Times', '', 12)
-        pdf.cell(0, 10, "Test Case Name:  " + DataReadMaster.GlobalData("test_Smoke_Home_Manager", "PDFTestName"), 0, 1)
+        pdf.cell(0, 10, "Test Case Name:  " + DataReadMaster.GlobalData(MdataSheetTab, "PDFTestName"), 0, 1)
         pdf.multi_cell(0, 10,
-                       "Description:  " + DataReadMaster.GlobalData("test_Smoke_Home_Manager", "PDFDescription"), 0, 1)
+                       "Description:  " + DataReadMaster.GlobalData(MdataSheetTab, "PDFDescription"), 0, 1)
         for i1 in range(len(TestResult)):
             pdf.set_fill_color(255, 255, 255)
             pdf.set_text_color(0, 0, 0)
@@ -106,7 +107,7 @@ def test_setup():
             TestName1 = TestResult[i1].encode('latin-1', 'ignore').decode('latin-1')
             pdf.multi_cell(0, 7, str(i1 + 1) + ")  " + TestName1, 0, 1, fill=True)
             TestFailStatus.append("Pass")
-        pdf.output(DataReadMaster.GlobalData("test_Smoke_Home_Manager", "TestName") + "_" + ct + ".pdf")
+        pdf.output(DataReadMaster.GlobalData(MdataSheetTab, "TestName") + "_" + ct + ".pdf")
 
         # -----------To check if any failed Test case present-------------------
         for io in range(len(TestResult)):
@@ -120,8 +121,8 @@ def test_setup():
         wb = openpyxl.load_workbook(loc)
         sheet = wb.active
         print()
-        check = DataReadMaster.GlobalData("test_Smoke_Home_Manager", "TestName")
-        PdfName = DataReadMaster.GlobalData("test_Smoke_Home_Manager", "TestName") + "_" + ct + ".pdf"
+        check = DataReadMaster.GlobalData(MdataSheetTab, "TestName")
+        PdfName = DataReadMaster.GlobalData(MdataSheetTab, "TestName") + "_" + ct + ".pdf"
         checkcount = 0
 
         for i in range(1, 100):
@@ -129,9 +130,9 @@ def test_setup():
                 if checkcount == 0:
                     sheet.cell(row=i, column=1).value = check
                     sheet.cell(row=i, column=2).value = PdfName
-                    sheet.cell(row=i, column=3).value = DataReadMaster.GlobalData("test_Smoke_Home_Manager",
+                    sheet.cell(row=i, column=3).value = DataReadMaster.GlobalData(MdataSheetTab,
                                                                                   "TestDirectoryName")
-                    sheet.cell(row=i, column=4).value = DataReadMaster.GlobalData("test_Smoke_Home_Manager",
+                    sheet.cell(row=i, column=4).value = DataReadMaster.GlobalData(MdataSheetTab,
                                                                                   "PDFDescription")
                     sheet.cell(row=i, column=5).value = FailStatus
                     checkcount = 1
@@ -141,9 +142,9 @@ def test_setup():
                 if sheet.cell(i, 1).value == check:
                     if checkcount == 0:
                         sheet.cell(row=i, column=2).value = PdfName
-                        sheet.cell(row=i, column=3).value = DataReadMaster.GlobalData("test_Smoke_Home_Manager",
+                        sheet.cell(row=i, column=3).value = DataReadMaster.GlobalData(MdataSheetTab,
                                                                                       "TestDirectoryName")
-                        sheet.cell(row=i, column=4).value = DataReadMaster.GlobalData("test_Smoke_Home_Manager",
+                        sheet.cell(row=i, column=4).value = DataReadMaster.GlobalData(MdataSheetTab,
                                                                                       "PDFDescription")
                         sheet.cell(row=i, column=5).value = FailStatus
                         checkcount = 1
@@ -176,8 +177,6 @@ def test_setup():
 def test_AllModules(test_setup):
     if Exe == "Yes":
         try:
-            MdataSheetTab = "test_Smoke_Home_Manager"
-            PageName = "Home"
             # ---------------------------Verify Home page-----------------------------
             PageTitleExpected = "Home - Demo - Benefits Coverage Manager"
             LoaderCls.LoaderMeth(driver)
@@ -200,7 +199,7 @@ def test_AllModules(test_setup):
                                                ElementVerify,
                                                PageName, TestResult, TestResultStatus)
             driver.find_element(By.XPATH,
-                                DataReadMaster.GlobalData("test_Smoke_Home_Manager", "HomePage")).click()
+                                DataReadMaster.GlobalData(MdataSheetTab, "HomePage")).click()
 
             # -------------------Create Custom Plan Button-------------------------
             ElementVerify = "Create Custom Plan"
@@ -211,7 +210,7 @@ def test_AllModules(test_setup):
                                                ElementVerify,
                                                PageName, TestResult, TestResultStatus)
             driver.find_element(By.XPATH,
-                                DataReadMaster.GlobalData("test_Smoke_Home_Manager", "HomePage")).click()
+                                DataReadMaster.GlobalData(MdataSheetTab, "HomePage")).click()
 
             # -------------------Create Bundle Button-------------------------
             ElementVerify = "Create Bundle"
@@ -222,7 +221,7 @@ def test_AllModules(test_setup):
                                                ElementVerify,
                                                PageName, TestResult, TestResultStatus)
             driver.find_element(By.XPATH,
-                                DataReadMaster.GlobalData("test_Smoke_Home_Manager", "HomePage")).click()
+                                DataReadMaster.GlobalData(MdataSheetTab, "HomePage")).click()
 
             # -------------------Safe to Plan Name Link------------------------------
             MdataSheetItem = "SafeToPlanNameLinkText"
@@ -240,7 +239,7 @@ def test_AllModules(test_setup):
                                                    ElementVerify,
                                                    PageName, TestResult, TestResultStatus)
                 driver.find_element(By.XPATH,
-                                    DataReadMaster.GlobalData("test_Smoke_Home_Manager", "HomePage")).click()
+                                    DataReadMaster.GlobalData(MdataSheetTab, "HomePage")).click()
 
                 # -------------------Pagination Clicks-------------------------
                 ElementVerify ="Pagination Clicks under My Approvals table"
@@ -267,7 +266,7 @@ def test_AllModules(test_setup):
         loc = (path + 'PDFFileNameData/' + ExcelFileName + '.xlsx')
         wb = openpyxl.load_workbook(loc)
         sheet = wb.active
-        check = DataReadMaster.GlobalData("test_Smoke_Home_Manager", "TestName")
+        check = DataReadMaster.GlobalData(MdataSheetTab, "TestName")
 
         for i in range(1, 100):
             if sheet.cell(i, 1).value == check:

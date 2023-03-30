@@ -1,5 +1,6 @@
 import math
 import re
+import time
 
 from selenium.webdriver.common.by import By
 from TestEnvironment.GlobalClassMethods.MasterDataExcelReader import DataReadMaster
@@ -28,22 +29,22 @@ class SafeToElementActionCls:
         try:
             ElementFound = driver.find_element(By.XPATH,
                                                  DataReadMaster.GlobalData(MdataSheetTab, MdataSheetItem)).text
-            # print("TotalItem " + ElementFound)
+            print("TotalItem " + ElementFound)
             substr = "of"
             if substr in ElementFound:
                 x = ElementFound.split(substr)
                 string_name = x[0]
                 TotalItemAfterOf = x[1]
-                # print("string_name "+string_name)
-                # print("TotalItemAfterOf "+TotalItemAfterOf)
+                print("string_name "+string_name)
+                print("TotalItemAfterOf "+TotalItemAfterOf)
                 substr = "–"
                 try:
                     if substr in string_name:
                         x = string_name.split(substr)
                         string_nameBefore = x[0]
                         string_nameAfter = x[1]
-                        # print("string_nameBefore " + string_nameBefore)
-                        # print("string_nameAfter " + string_nameAfter)
+                        print("string_nameBefore " + string_nameBefore)
+                        print("string_nameAfter " + string_nameAfter)
                         IterateNo = int(TotalItemAfterOf) / int(string_nameAfter)
                         print(str(float(IterateNo)))
                         IterateNo = math.ceil(float(IterateNo))
@@ -52,13 +53,16 @@ class SafeToElementActionCls:
                         ElementCount=driver.find_elements(By.XPATH,DataReadMaster.GlobalData(MdataSheetTab, EleCount))
                         ElementCount=len(ElementCount)
                         for NextClickCount in range(1, IterateNo):
+                            print("NextClickCount "+str(NextClickCount))
+                            time.sleep(1)
                             driver.find_element(By.XPATH,DataReadMaster.GlobalData(MdataSheetTab, NextClick)).click()
+                            time.sleep(1)
                             ElementCountNext = driver.find_elements(By.XPATH,
                                                                 DataReadMaster.GlobalData(MdataSheetTab, EleCount))
                             ElementCountNext = len(ElementCountNext)
                             ElementCount=ElementCount+ElementCountNext
 
-                        #print("ElementCountFound "+str(ElementCount))
+                        print("ElementCountFound "+str(ElementCount))
                         if ElementCount==int(TotalItemAfterOf):
                             TestResult.append(ElementVerify +" at "+PageName+ " was working as expected")
                             TestResultStatus.append("Pass")
