@@ -9,8 +9,8 @@ class LoaderCls:
     @classmethod
     def LoaderMeth(cls,driver):
         #pass
-        SHORT_TIMEOUT = 2
-        LONG_TIMEOUT = 60
+        SHORT_TIMEOUT = 1
+        LONG_TIMEOUT = 30
         LOADING_ELEMENT_XPATH = DataReadMaster.GlobalData("GlobalData", "Loader")
         try:
             WebDriverWait(driver, SHORT_TIMEOUT

@@ -234,8 +234,82 @@ def test_AllModules(test_setup):
                 ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2, ElementExpected,
                                                    ElementVerify,
                                                    PageName, TestResult, TestResultStatus)
-                driver.find_element(By.XPATH,
-                                    DataReadMaster.GlobalData(MdataSheetTab, "HomePage")).click()
+                # -------------------Summary Tab-------------------------
+                ElementVerify = "Summary tab button inside Plan details"
+                ElementExpected = "Plan Name"
+                MdataSheetItem = "SummaryTabButtonText"
+                ElementPresentCls.ElementPresentMeth(driver, MdataSheetTab, MdataSheetItem, ElementExpected,
+                                                     ElementVerify,
+                                                     PageName, TestResult, TestResultStatus)
+                # -------------------Plan Services Tab-------------------------
+                ElementVerify = "Plan Services tab button inside Plan details"
+                ElementExpected = "Service Name"
+                MdataSheetItem = "PlanServicesTabButton"
+                MdataSheetItem2 = "PlanServicesTabButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                # -------------------Plan History Tab-------------------------
+                ElementVerify = "Plan History tab button inside Plan details"
+                ElementExpected = "Version"
+                MdataSheetItem = "PlanHistoryTabButton"
+                MdataSheetItem2 = "PlanHistoryTabButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                # -------------------SBC Examples Tab-------------------------
+                ElementVerify = "SBC Examples tab button inside Plan details"
+                ElementExpected = "RUN SBC CALCULATOR"
+                MdataSheetItem = "SBCExamplesTabButton"
+                MdataSheetItem2 = "SBCExamplesTabButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                # -------------------Related Actions Tab-------------------------
+                ElementVerify = "Related Actions tab button inside Plan details"
+                ElementExpected = "Edit Plan"
+                MdataSheetItem = "RelatedActionsTabButton"
+                MdataSheetItem2 = "RelatedActionsTabButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                driver.find_element(By.XPATH,DataReadMaster.GlobalData(MdataSheetTab, "SummaryTabButton")).click()
+                # -------------------Edit Plan Page-------------------------
+                ElementVerify = "Edit Plan page inside Plan details"
+                ElementExpected = "Plan Name"
+                MdataSheetItem = "EditPlanButton"
+                MdataSheetItem2 = "EditPlanButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                driver.find_element(By.XPATH,DataReadMaster.GlobalData(MdataSheetTab, "SummaryTabButton")).click()
+                # -------------------Bulk Copy Plan Page-------------------------
+                ElementVerify = "Bulk Copy Plan page inside Plan details"
+                ElementExpected = "Number of Copies"
+                MdataSheetItem = "BulkCopyPlanButton"
+                MdataSheetItem2 = "BulkCopyPlanButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                driver.find_element(By.XPATH, DataReadMaster.GlobalData(MdataSheetTab, "SummaryTabButton")).click()
+                # -------------------Review Plan Page-------------------------
+                ElementVerify = "Review Plan page inside Plan details"
+                ElementExpected = "Plan Name"
+                MdataSheetItem = "ReviewPlanButton"
+                MdataSheetItem2 = "ReviewPlanButtonText"
+                ElementActionCls.ElementActionMeth(driver, MdataSheetTab, MdataSheetItem, MdataSheetItem2,
+                                                   ElementExpected,
+                                                   ElementVerify,
+                                                   PageName, TestResult, TestResultStatus)
+                driver.find_element(By.XPATH, DataReadMaster.GlobalData(MdataSheetTab, "CancelReviewPlanButton")).click()
+                LoaderCls.LoaderMeth(driver)
+                driver.find_element(By.XPATH,DataReadMaster.GlobalData(MdataSheetTab, "HomePage")).click()
 
                 # -------------------Pagination Clicks-------------------------
                 ElementVerify ="Pagination clicks under plans table"

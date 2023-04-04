@@ -14,8 +14,9 @@ class ElementActionCls:
             ElementFound = driver.find_element(By.XPATH,
                                                DataReadMaster.GlobalData(MdataSheetTab,
                                                                          MdataSheetItem2)).text
-            # print("ElementExpected is "+ElementExpected)
-            # print("ElementFound is "+ElementFound)
+            # if ElementExpected=="Plan Name":
+            #     print("ElementExpected is "+ElementExpected)
+            #     print("ElementFound is "+ElementFound)
             assert ElementExpected in ElementFound, ElementVerify + " at " + PageName + " not found"
             TestResult.append(ElementVerify + " at " + PageName + " was present and working as expected")
             TestResultStatus.append("Pass")
